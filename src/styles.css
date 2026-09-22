@@ -1,0 +1,214 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+/* ZARtech Solutions — design system
+   Palette derived from the brand mark: near-black, charcoal, cool metallic
+   gray, warm white, restrained deep teal accent. */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-steel: var(--steel);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-foreground);
+  --color-border: var(--line);
+  --color-ring: var(--accent);
+
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-zt: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --background: oklch(0.15 0.006 240);
+  --foreground: oklch(0.97 0.004 240);
+  --surface: oklch(0.18 0.007 240);
+  --surface-2: oklch(0.22 0.008 240);
+  --line: oklch(1 0 0 / 9%);
+  --line-strong: oklch(1 0 0 / 20%);
+  --muted: oklch(0.26 0.008 240);
+  --muted-foreground: oklch(0.68 0.012 240);
+  --steel: oklch(0.6 0.014 235);
+  --accent: oklch(0.62 0.09 210);
+  --accent-soft: oklch(0.72 0.08 205);
+  --accent-foreground: oklch(0.13 0.005 240);
+  --radius: 2px;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 40%, transparent);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+}
+
+@utility zt-shell {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 96rem;
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+/* Small technical label used across sections */
+@utility zt-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility zt-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  font-size: clamp(2.6rem, 9vw, 8.5rem);
+  text-transform: uppercase;
+}
+
+@utility zt-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+}
+
+/* Faint architectural grid used as a section environment */
+@utility zt-grid-bg {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+}
+
+@utility zt-diagonal {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    oklch(1 0 0 / 5%) 0px,
+    oklch(1 0 0 / 5%) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+@utility zt-link-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s var(--ease-zt);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes zt-pulse-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 0.6;
+  }
+}
+
+@keyframes zt-flow {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes zt-dash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
