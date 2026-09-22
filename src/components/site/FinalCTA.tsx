@@ -1,19 +1,13 @@
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { contact } from "@/data/site";
 import { symbolUrl } from "./brand";
 import { RevealLines } from "./Reveal";
 
 export function FinalCTA() {
-  const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  const symbolOpacity = useTransform(scrollYProgress, [0.15, 0.7], [0, 0.5]);
-  const symbolScale = useTransform(scrollYProgress, [0.15, 1], [0.85, 1]);
-  const sweep = useTransform(scrollYProgress, [0.3, 0.9], ["-120%", "120%"]);
 
   return (
-    <section id="contact" ref={ref} className="relative overflow-hidden border-t border-line py-32 sm:py-48">
+    <section id="contact" className="relative overflow-hidden border-t border-line py-32 sm:py-48">
       <div className="zt-shell relative">
         <p className="zt-eyebrow mb-8 flex items-center gap-3">
           <span className="inline-block h-px w-10 bg-accent" />
@@ -62,26 +56,17 @@ export function FinalCTA() {
           </div>
         </dl>
 
-        {/* Conclusion: the ZARtech symbol resolves */}
+        {/* Finish with the official ZARtech symbol, presented without effects. */}
         <div className="relative mt-28 flex flex-col items-center">
-          <div className="relative">
-            <motion.img
-              src={symbolUrl}
-              alt="ZARtech Solutions symbol"
-              style={{
-                opacity: reduce ? 0.4 : symbolOpacity,
-                scale: reduce ? 1 : symbolScale,
-                maskImage: "radial-gradient(closest-side, #000 60%, transparent 97%)",
-                WebkitMaskImage: "radial-gradient(closest-side, #000 60%, transparent 97%)",
-              }}
-              className="w-40 select-none sm:w-56"
-            />
-            <motion.span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 w-16 bg-gradient-to-r from-transparent via-accent/40 to-transparent blur-md"
-              style={{ x: reduce ? 0 : sweep }}
-            />
-          </div>
+          <motion.img
+            src={symbolUrl}
+            alt="ZARtech Solutions symbol"
+            initial={reduce ? false : { opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="w-40 select-none sm:w-56"
+          />
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

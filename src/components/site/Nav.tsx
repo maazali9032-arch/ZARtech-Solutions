@@ -44,10 +44,10 @@ export function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,padding,backdrop-filter] duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,padding,backdrop-filter] duration-500 ${
           scrolled
-            ? "border-b border-line bg-background/70 py-3 backdrop-blur-xl"
-            : "border-b border-transparent py-6"
+            ? "bg-background/70 py-3 backdrop-blur-xl"
+            : "py-6"
         }`}
       >
         <nav className="zt-shell flex items-center justify-between gap-6" aria-label="Primary">
