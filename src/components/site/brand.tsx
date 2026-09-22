@@ -1,23 +1,10 @@
-import symbolAsset from "@/assets/zartech-symbol.png.asset.json";
-import lockupAsset from "@/assets/zartech-lockup.png.asset.json";
+import symbolAsset from "@/assets/zartech-symbol.webp";
 
-export const symbolUrl = symbolAsset.url;
-export const lockupUrl = lockupAsset.url;
+// Keep the official brand artwork bundled with the site so production never
+// depends on an editor-specific asset service.
+export const symbolUrl = symbolAsset;
 
 /** Official ZARtech symbol, used unmodified. */
 export function Symbol({ className = "", alt = "ZARtech Solutions symbol" }) {
   return <img src={symbolUrl} alt={alt} className={className} loading="lazy" decoding="async" />;
-}
-
-/** Full ZARtech lockup: symbol, wordmark and SOLUTIONS descriptor. */
-export function Lockup({ className = "" }) {
-  return (
-    <img
-      src={lockupUrl}
-      alt="ZARtech Solutions"
-      className={className}
-      loading="lazy"
-      decoding="async"
-    />
-  );
 }
