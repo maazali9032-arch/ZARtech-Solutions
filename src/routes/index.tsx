@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "sales",
-                telephone: "+91 9032953093",
+                telephone: "+91 9493553093",
               },
             },
             {

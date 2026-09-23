@@ -1292,7 +1292,7 @@ WHATSAPP →
 
 WhatsApp:
 
-+91 9032953093
++91 9493553093
 
 Contact:
 
@@ -1344,7 +1344,7 @@ Contact
 
 WhatsApp:
 
-+91 9032953093
++91 9493553093
 
 Maaz Ali
 
