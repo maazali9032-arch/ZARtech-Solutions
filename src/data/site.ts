@@ -312,7 +312,7 @@ export const productTypes = [
 ];
 
 export const contact = {
-  person: "Maaz Ali",
+  // person: "Maaz Ali",
   whatsapp: "+91 9493553093",
   whatsappHref: "https://wa.me/919493553093",
 };
